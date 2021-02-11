@@ -1,9 +1,6 @@
 const mongoose= require('mongoose');
 const UserSChema=new mongoose.Schema({
-    id:{
-        type: Number,
-        required: true,
-    },
+   
    name: {
        type: String,
        required : true ,
@@ -17,5 +14,5 @@ const UserSChema=new mongoose.Schema({
     required : true,
 },
 });
-const usermodel=mongoose.model('meme',UserSChema);
+const usermodel=mongoose.model('crio',UserSChema);
 module.exports=usermodel;

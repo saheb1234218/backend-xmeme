@@ -6,7 +6,7 @@ const cors=require('cors');
 const CONNECTION_URL=require('./.env');
 const dotenv=require('dotenv');
 
-const PORT= process.env.PORT || 5000;
+const PORT= process.env.PORT || 8081;
 
 
 
@@ -32,15 +32,15 @@ App.post("/memes",async(req,res)=>{
     own=req.body.name;
     cap=req.body.caption;
     murl=req.body.url;
-    id1=req.body.id;
+   
     const user= new usermodel({
-        id:Number(id1),
+       
        name: own,
         caption: cap,
        url: murl});
     await user.save();
-    console.log("data 2 saved");
-    res.send("saved");
+    console.log("{ id: '"+Math.random()*10+"'}");
+    res.send("{ id: '"+Math.random()*10+"'}");
 })
 
 
@@ -48,27 +48,53 @@ App.delete("/delete/:id",async(req,res)=>{
     const id =req.params.id;
     await usermodel.findOneAndRemove(id).exec();
     
-    res.send("item deleted");
+    res.send(id);
 });
 
 
-App.put("/memes",async(req,res)=>{
+App.get("/memes/:id",(req,res)=>{
+    const id=req.params.id;
+    usermodel.findById(id,(err,result)=>{
+    if(err)
+    {
+        res.send(err);
+        console.log("meme with"+id+"found");
+    }
+    else{
+        res.send(result);
+    }
+    })
+})
+
+
+App.put("/memes/:id",async(req,res)=>{
     const new_url=req.body.new_url;
     const new_caption=req.body.new_caption;
     const id=req.body.id;
-    const nam=req.body.name;
+    const new_name=req.body.new_name;
+ 
+    
     try{
         await usermodel.findById(id,(error,friendToupdate)=>{
-            friendToupdate.caption=new_caption;
-            friendToupdate.url=new_url;
-            friendToupdate.name=nam;
-            friendToupdate.save();
+           if(error)
+           {
+               console.log(error);
+        }
+        else
+    { friendToupdate.caption=new_caption;
+        friendToupdate.url=new_url;
+        friendToupdate.name=new_name;
+        friendToupdate.save();
+        res.send(friendToupdate);
+}
         });
     }
-    catch(err){
-console.log(err);
+    catch(error){
+console.log(error);
     }
-    res.send("updated");
+   
+           
+   
 });
 
 
@@ -91,5 +117,5 @@ App.get('/memes',async(req,res)=>{
 
 
 App.listen(PORT,()=>{
-    console.log("server is running on port"+PORT);
+    console.log("server is running on port "+PORT);
 })
