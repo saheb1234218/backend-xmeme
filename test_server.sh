@@ -25,4 +25,4 @@ curl --location --request POST 'http://3.138.157.75:8081/memes' \
 
 }'
 
-curl --location --request GET http://3.138.157.75:8081/memes'
+curl --location --request GET 'http://3.138.157.75:8081/memes'
