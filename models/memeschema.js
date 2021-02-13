@@ -14,5 +14,5 @@ const UserSChema=new mongoose.Schema({
     required : true,
 },
 });
-const usermodel=mongoose.model('crio',UserSChema);
+const usermodel=mongoose.model('test-crio',UserSChema);
 module.exports=usermodel;
