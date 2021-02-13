@@ -10,8 +10,8 @@ chmod +x server_run.sh
 chmod +x sleep.sh
 
 ./sleep.sh
-curl --location --request GET 'http://localhost:8081/memes'
-curl --location --request POST 'http://localhost:8081/memes' \
+curl --location --request GET 'http://18.222.196.37:8081/memes'
+curl --location --request POST 'http://18.222.196.37:8081/memes' \
 
 --header 'Content-Type: application/json' \
 
@@ -24,3 +24,5 @@ curl --location --request POST 'http://localhost:8081/memes' \
 "caption": "This is a meme"
 
 }'
+
+curl --location --request GET 'http://18.222.196.37:8081/memes'
