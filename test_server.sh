@@ -10,6 +10,6 @@ chmod +x server_run.sh
 chmod +x sleep.sh
 
 ./sleep.sh
-curl --location --request GET 'http://3.141.26.18:8081/memes'
-curl --location --request POST 'http://3.141.26.18:8081/memes' --header 'Content-Type: application/json' --data-raw '{"name": "xyz","url": "abc.com","caption": "This is a meme"}'
-curl --location --request GET 'http://3.141.26.18:8081/memes'
+curl --location --request GET 'http://13.59.57.3:8081/memes'
+curl --location --request POST 'http://13.59.57.3:8081/memes' --header 'Content-Type: application/json' --data-raw '{"name": "xyz","url": "abc.com","caption": "This is a meme"}'
+curl --location --request GET 'http://13.59.57.3:8081/memes'
