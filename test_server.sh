@@ -1,5 +1,5 @@
 
-cd server
+
 
 chmod +x install.sh
 
